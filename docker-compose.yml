@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '9090:5432'
+    volumes:
+      - postgres_data:/var/lib/postgressql/data
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    ports:
+      - 9091:8080
+
+volumes:
+  postgres_data:
+    driver: local
